@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom font for futuristic feel */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+    font-family: 'Orbitron', monospace;
+    background: #000;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+  }
+  
+  #root {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@layer components {
+  .holographic-text {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+    animation: hologram-flicker 2s infinite;
+  }
+  
+  .holographic-border {
+    border: 2px solid #00ffff;
+    box-shadow: 
+      0 0 10px #00ffff,
+      inset 0 0 10px rgba(0, 255, 255, 0.1);
+  }
+  
+  .plasma-glow {
+    background: linear-gradient(45deg, #00aaff, #0066cc);
+    box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
+  }
+  
+  .metamaterial-surface {
+    background: linear-gradient(135deg, 
+      rgba(26, 26, 46, 0.9) 0%,
+      rgba(52, 52, 78, 0.8) 50%,
+      rgba(26, 26, 46, 0.9) 100%);
+    backdrop-filter: blur(10px);
+  }
+}
+
+@layer utilities {
+  .scanline {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 255, 255, 0.03) 50%,
+      transparent 100%
+    );
+    animation: scanline-move 3s linear infinite;
+  }
+  
+  .crt-effect {
+    position: relative;
+  }
+  
+  .crt-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 255, 0.02) 2px,
+      rgba(0, 255, 255, 0.02) 4px
+    );
+    pointer-events: none;
+  }
+}
+
+@keyframes hologram-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.95; }
+  51% { opacity: 1; }
+  52% { opacity: 0.98; }
+  53% { opacity: 1; }
+}
+
+@keyframes scanline-move {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes plasma-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* Performance optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .holographic-text {
+    text-shadow: 0 0 5px #00ffff;
+  }
+  
+  .plasma-glow {
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
